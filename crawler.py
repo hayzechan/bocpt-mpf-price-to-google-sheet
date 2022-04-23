@@ -1,11 +1,8 @@
-from typing import Callable
-
+import gspread
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-import requests
 
 
 def get_url_content(url):
@@ -35,10 +32,15 @@ def get_fund_price(soup: BeautifulSoup):
 
 
 def price_to_nested_list(price):
-    return [price[x:x+2] for x in range(0, len(price), 2)]
+    return [price[x:x + 2] for x in range(0, len(price), 2)]
+
+
+def store_data_into_google_sheet(file: str, cell_range: str, price_list):
+    gc = gspread.service_account(filename='cred.yml')
+    sh = gc.open(file).sheet1
+    sh.update(cell_range, get_fund_price(price_list))
+
 
 url_content = get_url_content('https://www.bocpt.com/homepage/my-choice-mpf/fund-price-enquiry/')
 fund = get_fund_price(url_content)
-
-print(fund)
-
+store_data_into_google_sheet('Currency', 'A1:B', fund)
