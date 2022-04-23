@@ -35,7 +35,7 @@ def price_to_nested_list(price):
     return [price[x:x + 2] for x in range(0, len(price), 2)]
 
 
-def store_data_into_google_sheet(file: str, cell_range: str, price_list):
+def store_data_into_google_sheet(file: str, sheet: str, cell_range: str, price_list):
     gc = gspread.service_account(filename='cred.yml')
-    sh = gc.open(file).sheet1
+    sh = gc.open(file).worksheet(sheet)
     sh.update(cell_range, price_list)
