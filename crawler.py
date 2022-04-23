@@ -5,9 +5,9 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def get_url_content(url):
+def get_url_content(url, binary_location):
     options = webdriver.ChromeOptions()
-    options.binary_location = "/Applications/Google Chrome 2.app/Contents/MacOS/Google Chrome"
+    options.binary_location = binary_location
     chrome_driver_binary = Service(ChromeDriverManager().install())
     browser = webdriver.Chrome(service=chrome_driver_binary, options=options)
     browser.get(url)
