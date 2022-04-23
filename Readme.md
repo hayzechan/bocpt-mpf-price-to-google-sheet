@@ -8,7 +8,7 @@ Steps:
 
 ## Q: How to get credentials?
 ## A: Goto:
-- console.cloud.google.com > Create project
+- [Google developer console] (https://console.cloud.google.com) > Create project
 - Search "Google Drive API" > Enable
 - Search "Google Sheets API" > Enable
 - After enabled "Google Sheets API" > Credentials > Create Credentials > Service Account
