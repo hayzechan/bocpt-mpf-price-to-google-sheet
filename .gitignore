@@ -2,3 +2,5 @@ cred.yml
 playground.py
 
 __pycache__
+
+pyinstaller

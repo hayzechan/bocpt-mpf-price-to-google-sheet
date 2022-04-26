@@ -16,5 +16,5 @@ def start_program():
 
 if __name__ == '__main__':
     scheduler = BlockingScheduler()
-    scheduler.add_job(start_program, 'interval', hour=1)
+    scheduler.add_job(start_program, 'interval', hours=5)
     scheduler.start()
